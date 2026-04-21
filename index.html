@@ -1,534 +1,131 @@
 <!DOCTYPE html>
 <html lang="fi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Frosty RP | Premium Shop</title>
-  <style>
-    :root{
-      --bg:#050816;
-      --bg2:#0a1024;
-      --panel:rgba(10,16,36,.82);
-      --panel2:rgba(17,24,39,.9);
-      --line:rgba(96,165,250,.16);
-      --text:#eef6ff;
-      --muted:#93a9c9;
-      --blue:#38bdf8;
-      --blue2:#2563eb;
-      --blue3:#60a5fa;
-      --glow:0 0 30px rgba(56,189,248,.22);
-      --radius:22px;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frosty RP Shop</title>
 
-    *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{
-      font-family:Arial,Helvetica,sans-serif;
-      color:var(--text);
-      background:
-        radial-gradient(circle at top left, rgba(37,99,235,.22), transparent 22%),
-        radial-gradient(circle at top right, rgba(56,189,248,.12), transparent 18%),
-        linear-gradient(135deg,var(--bg) 0%, var(--bg2) 45%, #0b1734 100%);
-      min-height:100vh;
-      overflow-x:hidden;
-    }
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#050816,#0a1024,#102c66);
+color:white;
+text-align:center;
+}
 
-    a{text-decoration:none;color:inherit}
-    button{font:inherit}
-    .container{width:min(1180px,92%);margin:0 auto}
+header{
+padding:70px 20px;
+}
 
-    .topbar{
-      position:sticky;
-      top:0;
-      z-index:1000;
-      backdrop-filter:blur(14px);
-      background:rgba(5,8,22,.68);
-      border-bottom:1px solid var(--line);
-    }
+h1{
+font-size:65px;
+margin:0;
+}
 
-    .nav{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      padding:18px 0;
-    }
+p{
+font-size:24px;
+color:#cbd5e1;
+}
 
-    .nav-left,.nav-right{display:flex;align-items:center;gap:14px}
+.btn{
+display:inline-block;
+margin-top:20px;
+padding:16px 35px;
+background:#1da1ff;
+border-radius:14px;
+color:white;
+font-size:22px;
+text-decoration:none;
+}
 
-    .menu-btn{
-      width:52px;height:52px;border-radius:16px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.03);
-      color:var(--text);
-      display:grid;place-items:center;
-      cursor:pointer;
-      box-shadow:var(--glow);
-    }
+.section{
+padding:50px 20px;
+}
 
-    .menu-btn span{
-      display:block;width:20px;height:2px;background:#fff;position:relative;border-radius:2px;
-    }
-    .menu-btn span::before,.menu-btn span::after{
-      content:"";position:absolute;left:0;width:20px;height:2px;background:#fff;border-radius:2px;
-    }
-    .menu-btn span::before{top:-6px}
-    .menu-btn span::after{top:6px}
+.box{
+background:rgba(255,255,255,0.07);
+max-width:320px;
+margin:15px;
+display:inline-block;
+padding:30px;
+border-radius:20px;
+}
 
-    .brand{
-      display:flex;align-items:center;gap:12px;
-      font-size:1.4rem;font-weight:800;letter-spacing:.3px;
-    }
-    .brand-logo{
-      width:44px;height:44px;border-radius:14px;
-      background:linear-gradient(135deg,var(--blue),var(--blue2));
-      display:grid;place-items:center;font-size:1.2rem;
-      box-shadow:var(--glow);
-    }
-    .brand small{display:block;font-size:.78rem;color:var(--muted);font-weight:600}
+.price{
+font-size:50px;
+font-weight:bold;
+margin:20px 0;
+}
 
-    .nav-btn{
-      padding:14px 18px;border-radius:16px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.03);
-      color:var(--text);font-weight:700;
-      display:inline-flex;align-items:center;gap:10px;
-      box-shadow:var(--glow);
-    }
+.buy{
+display:inline-block;
+padding:14px 28px;
+background:#1da1ff;
+border-radius:12px;
+color:white;
+text-decoration:none;
+font-size:22px;
+}
 
-    .nav-btn.primary{
-      background:linear-gradient(135deg,var(--blue),var(--blue2));
-      border:none;
-    }
-
-    .hero{
-      padding:72px 0 42px;
-      position:relative;
-    }
-
-    .hero-grid{
-      display:grid;
-      grid-template-columns:1.15fr .85fr;
-      gap:26px;
-      align-items:stretch;
-    }
-
-    .hero-card,.showcase,.section-card,.product-card,.rules-card,.help-card{
-      background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.03));
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      box-shadow:var(--glow);
-    }
-
-    .hero-card{padding:34px}
-    .badge{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:9px 14px;border-radius:999px;
-      background:rgba(56,189,248,.12);border:1px solid rgba(96,165,250,.2);
-      color:#cbeafe;font-size:.92rem;font-weight:700;
-      margin-bottom:18px;
-    }
-    h1{
-      font-size:clamp(2.3rem,5vw,4.6rem);
-      line-height:1.02;
-      margin-bottom:14px;
-    }
-    .hero p{
-      color:var(--muted);
-      font-size:1.07rem;
-      max-width:720px;
-      margin-bottom:24px;
-    }
-    .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:24px}
-    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-    .stat{
-      padding:18px;border-radius:18px;
-      background:rgba(255,255,255,.03);
-      border:1px solid rgba(255,255,255,.06);
-    }
-    .stat strong{display:block;font-size:1.4rem;color:#dbeafe;margin-bottom:4px}
-    .stat span{color:var(--muted);font-size:.95rem}
-
-    .showcase{padding:26px;display:flex;flex-direction:column;justify-content:space-between;min-height:100%}
-    .coin-visual{
-      min-height:280px;border-radius:20px;
-      display:grid;place-items:center;
-      background:
-        radial-gradient(circle at center, rgba(56,189,248,.18), transparent 35%),
-        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
-      border:1px solid rgba(96,165,250,.14);
-      margin-bottom:18px;
-      font-size:7rem;
-    }
-    .showcase h3{font-size:1.5rem;margin-bottom:10px}
-    .showcase p{color:var(--muted);margin-bottom:18px}
-
-    .content-grid{
-      display:grid;
-      grid-template-columns:280px 1fr;
-      gap:24px;
-      padding:14px 0 58px;
-    }
-
-    .sidebar{
-      position:sticky;top:92px;height:max-content;
-      display:grid;gap:18px;
-    }
-
-    .section-card{padding:20px}
-    .section-card h4{font-size:1rem;margin-bottom:16px;color:#dbeafe}
-    .menu-list{display:grid;gap:10px}
-    .menu-item{
-      display:flex;align-items:center;gap:12px;
-      padding:14px 14px;border-radius:16px;color:var(--muted);
-      border:1px solid transparent;
-      transition:.2s ease;
-    }
-    .menu-item:hover,.menu-item.active{
-      color:#fff;background:rgba(56,189,248,.09);border-color:rgba(96,165,250,.16);
-    }
-
-    .main-content{display:grid;gap:24px}
-    .section-head{
-      display:flex;justify-content:space-between;align-items:end;gap:18px;flex-wrap:wrap;
-      margin-bottom:4px;
-    }
-    .section-head h2{font-size:2rem}
-    .section-head p{color:var(--muted);max-width:680px}
-
-    .product-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-      gap:18px;
-    }
-
-    .product-card{padding:22px;position:relative;overflow:hidden}
-    .product-card::before{
-      content:"";position:absolute;inset:auto -40px -40px auto;width:120px;height:120px;
-      background:radial-gradient(circle, rgba(56,189,248,.18), transparent 70%);
-    }
-    .product-tag{
-      display:inline-flex;padding:8px 12px;border-radius:999px;
-      background:rgba(37,99,235,.18);border:1px solid rgba(96,165,250,.16);
-      color:#dbeafe;font-size:.82rem;font-weight:700;margin-bottom:14px;
-    }
-    .product-card h3{font-size:1.35rem;margin-bottom:10px}
-    .product-card p{color:var(--muted);font-size:.96rem;margin-bottom:16px;min-height:44px}
-    .price{font-size:2rem;font-weight:800;margin-bottom:14px}
-    .perk-list{list-style:none;display:grid;gap:8px;margin-bottom:18px;color:#dbeafe;font-size:.95rem}
-    .buy-btn{
-      width:100%;padding:14px;border:none;border-radius:16px;cursor:pointer;
-      font-weight:800;color:white;
-      background:linear-gradient(135deg,var(--blue),var(--blue2));
-      box-shadow:var(--glow);
-    }
-
-    .info-grid{
-      display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;
-    }
-    .rules-card,.help-card{padding:22px}
-    .rules-card h3,.help-card h3{margin-bottom:14px}
-    .rules-card ul,.help-card ul{list-style:none;display:grid;gap:10px;color:var(--muted)}
-
-    .footer{padding:10px 0 46px;color:var(--muted);text-align:center}
-
-    .drawer-backdrop{
-      position:fixed;inset:0;background:rgba(2,6,23,.6);backdrop-filter:blur(4px);
-      opacity:0;pointer-events:none;transition:.25s ease;z-index:1200;
-    }
-    .drawer{
-      position:fixed;top:0;left:0;height:100vh;width:min(360px,90vw);
-      background:linear-gradient(180deg,#050816,#0a1024 70%,#0b1734 100%);
-      border-right:1px solid var(--line);
-      box-shadow:0 0 40px rgba(0,0,0,.45);
-      transform:translateX(-105%);transition:.28s ease;z-index:1300;
-      display:flex;flex-direction:column;
-    }
-    .drawer.open{transform:translateX(0)}
-    .drawer-backdrop.show{opacity:1;pointer-events:auto}
-    .drawer-header{
-      display:flex;align-items:center;justify-content:space-between;
-      padding:22px;border-bottom:1px solid var(--line);
-    }
-    .close-btn{
-      width:42px;height:42px;border-radius:12px;border:1px solid var(--line);
-      background:rgba(255,255,255,.04);color:white;cursor:pointer;
-    }
-    .drawer-content{padding:18px;overflow:auto;display:grid;gap:18px}
-
-    .drawer-section h4{font-size:.95rem;color:#dbeafe;margin-bottom:12px}
-    .drawer-link{
-      display:flex;align-items:center;gap:12px;padding:14px;border-radius:16px;
-      color:var(--muted);border:1px solid transparent;
-    }
-    .drawer-link:hover{background:rgba(56,189,248,.08);border-color:rgba(96,165,250,.12);color:white}
-
-    @media (max-width: 980px){
-      .hero-grid,.content-grid,.info-grid{grid-template-columns:1fr}
-      .sidebar{display:none}
-      .nav-right .nav-btn:first-child{display:none}
-      .stats{grid-template-columns:1fr}
-      .coin-visual{min-height:220px;font-size:5.2rem}
-    }
-
-    @media (max-width: 640px){
-      .nav{padding:14px 0}
-      .brand{font-size:1.1rem}
-      .brand-logo{width:40px;height:40px}
-      .hero-card,.showcase,.section-card,.product-card,.rules-card,.help-card{border-radius:18px}
-      .hero-card{padding:24px}
-      .nav-btn{padding:12px 14px}
-      .hero-actions{flex-direction:column}
-      .hero-actions .nav-btn{width:100%;justify-content:center}
-    }
-  </style>
+.rules{
+max-width:700px;
+margin:auto;
+background:rgba(255,255,255,0.06);
+padding:30px;
+border-radius:20px;
+font-size:22px;
+line-height:1.7;
+}
+</style>
 </head>
+
 <body>
-  <div class="drawer-backdrop" id="backdrop"></div>
 
-  <aside class="drawer" id="drawer">
-    <div class="drawer-header">
-      <div class="brand">
-        <div class="brand-logo">❄️</div>
-        <div>Frosty RP<small>Premium Shop</small></div>
-      </div>
-      <button class="close-btn" id="closeDrawer">✕</button>
-    </div>
-    <div class="drawer-content">
-      <div class="drawer-section">
-        <h4>🛒 Kauppa</h4>
-        <a class="drawer-link" href="#credits">💸 Krediitit</a>
-        <a class="drawer-link" href="#vip">⭐ VIP</a>
-        <a class="drawer-link" href="#tags">🏷️ Tägit</a>
-        <a class="drawer-link" href="#unban">🔓 Unbannit</a>
-        <a class="drawer-link" href="#gang">🔫 Jengit</a>
-        <a class="drawer-link" href="#other">📄 Muut</a>
-      </div>
-      <div class="drawer-section">
-        <h4>📘 Tiedot</h4>
-        <a class="drawer-link" href="#rules">📖 Säännöt</a>
-        <a class="drawer-link" href="#help">ℹ️ Ohjeet</a>
-        <a class="drawer-link" href="https://discord.gg/esimerkki" target="_blank" rel="noopener noreferrer">💬 Discord</a>
-      </div>
-    </div>
-  </aside>
+<header>
+<h1>❄ Frosty RP ❄</h1>
+<p>Virallinen FiveM kauppa</p>
+<a class="btn" href="https://discord.gg/esimerkki">Liity Discordiin</a>
+</header>
 
-  <header class="topbar">
-    <div class="container nav">
-      <div class="nav-left">
-        <button class="menu-btn" id="openDrawer" aria-label="Avaa menu"><span></span></button>
-        <div class="brand">
-          <div class="brand-logo">❄️</div>
-          <div>Frosty RP<small>Musta-sininen premium shop</small></div>
-        </div>
-      </div>
-      <div class="nav-right">
-        <a class="nav-btn" href="#credits">🛒 Kauppa</a>
-        <a class="nav-btn primary" href="https://discord.gg/esimerkki" target="_blank" rel="noopener noreferrer">💬 Liity Discordiin</a>
-      </div>
-    </div>
-  </header>
+<section class="section">
+<h2>F-Coin Paketit</h2>
 
-  <main>
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-card">
-          <div class="badge">❄️ Frosty Premium FiveM Shop</div>
-          <h1>Frosty RP</h1>
-          <p>
-            Virallinen premium-kauppa Frosty-palvelimelle.
-          </p>
-        </div>
+<div class="box">
+<h3>5 000 F-Coin</h3>
+<div class="price">5€</div>
+<a class="buy" href="https://paypal.me/jutku/5">Osta</a>
+</div>
 
-        <div class="showcase">
-          <div class="coin-visual">🪙</div>
-          <div>
-            <h3>Pelaajien suosikki</h3>
-            <p>Helppo ja siisti ostokokemus, joka näyttää oikealta FiveM premium-kaupalta eikä tavalliselta HTML-sivulta.</p>
-            <a class="nav-btn primary" href="#credits">Katso paketit</a>
-          </div>
-        </div>
-      </div>
-    </section>
+<div class="box">
+<h3>10 000 F-Coin</h3>
+<div class="price">10€</div>
+<a class="buy" href="https://paypal.me/jutku/10">Osta</a>
+</div>
 
-    <section class="container content-grid">
-      <aside class="sidebar">
-        <div class="section-card">
-          <h4>🛒 Kauppa</h4>
-          <div class="menu-list">
-            <a class="menu-item active" href="#credits">💸 Krediitit</a>
-            <a class="menu-item" href="#vip">⭐ VIP</a>
-            <a class="menu-item" href="#tags">🏷️ Tägit</a>
-            <a class="menu-item" href="#unban">🔓 Unbannit</a>
-            <a class="menu-item" href="#gang">🔫 Jengit</a>
-            <a class="menu-item" href="#other">📄 Muut</a>
-          </div>
-        </div>
-        <div class="section-card">
-          <h4>📘 Tiedot</h4>
-          <div class="menu-list">
-            <a class="menu-item" href="#rules">📖 Säännöt</a>
-            <a class="menu-item" href="#help">ℹ️ Ohjeet</a>
-          </div>
-        </div>
-      </aside>
+<div class="box">
+<h3>20 000 F-Coin</h3>
+<div class="price">20€</div>
+<a class="buy" href="https://paypal.me/jutku/20">Osta</a>
+</div>
 
-      <div class="main-content">
-        <section id="credits">
-          <div class="section-head">
-            <div>
-              <h2>F-Coin paketit</h2>
-              <p>Osta krediittejä nopeasti PayPalilla. Vaihda ostonappien PayPal-linkit omiin linkkeihisi ennen käyttöä.</p>
-            </div>
-          </div>
+<div class="box">
+<h3>50 000 F-Coin</h3>
+<div class="price">50€</div>
+<a class="buy" href="https://paypal.me/jutku/50">Osta</a>
+</div>
 
-          <div class="product-grid">
-            <article class="product-card">
-              <div class="product-tag">Suosittu alkuun</div>
-              <h3>5 000 F-Coin</h3>
-              <p>Hyvä paketti uusille pelaajille, jotka haluavat aloittaa pienemmällä summalla.</p>
-              <div class="price">5€</div>
-              <ul class="perk-list">
-                <li>✅ 5 000 krediittiä</li>
-                <li>✅ Nopea osto</li>
-                <li>✅ Sopii aloitukseen</li>
-              </ul>
-              <a class="buy-btn" href="https://paypal.me/jutku/5" target="_blank" rel="noopener noreferrer">Osta nyt</a>
-            </article>
+</section>
 
-            <article class="product-card">
-              <div class="product-tag">Paras arvo</div>
-              <h3>10 000 F-Coin</h3>
-              <p>Tasapainoinen paketti aktiivisille pelaajille, jotka haluavat enemmän käyttövaraa.</p>
-              <div class="price">10€</div>
-              <ul class="perk-list">
-                <li>✅ 10 000 krediittiä</li>
-                <li>✅ Suosittu valinta</li>
-                <li>✅ Nopea toimitus</li>
-              </ul>
-              <a class="buy-btn" href="https://paypal.me/jutku/10" target="_blank" rel="noopener noreferrer">Osta nyt</a>
-            </article>
+<section class="section">
+<h2>Säännöt</h2>
+<div class="rules">
+Ostot ovat lopullisia.<br>
+Toimitus tapahtuu Discordissa.<br>
+Noudata Frosty RP sääntöjä.<br>
+Kiitos tuesta ❤️
+</div>
+</section>
 
-            <article class="product-card">
-              <div class="product-tag">Aktiivisille</div>
-              <h3>20 000 F-Coin</h3>
-              <p>Isompi paketti pelaajille, jotka haluavat enemmän krediittejä yhdellä ostolla.</p>
-              <div class="price">20€</div>
-              <ul class="perk-list">
-                <li>✅ 20 000 krediittiä</li>
-                <li>✅ Enemmän vastinetta</li>
-                <li>✅ Premium-osto</li>
-              </ul>
-              <a class="buy-btn" href="https://paypal.me/jutku/20" target="_blank" rel="noopener noreferrer">Osta nyt</a>
-            </article>
-
-            <article class="product-card">
-              <div class="product-tag">Iso paketti</div>
-              <h3>50 000 F-Coin</h3>
-              <p>Paras vaihtoehto isoihin ostoihin ja serverin tukemiseen suuremmalla summalla.</p>
-              <div class="price">50€</div>
-              <ul class="perk-list">
-                <li>✅ 50 000 krediittiä</li>
-                <li>✅ Tukee serveriä eniten</li>
-                <li>✅ Isoin paketti</li>
-              </ul>
-              <a class="buy-btn" href="https://paypal.me/jutku/50" target="_blank" rel="noopener noreferrer">Osta nyt</a>
-            </article>
-          </div>
-        </section>
-
-        <section id="vip">
-          <div class="section-head">
-            <div>
-              <h2>VIP & premium kategoriat</h2>
-              <p>Nämä osiot ovat valmiina rakenteessa. Voit lisätä niihin myöhemmin omat VIP-, tagi-, unban- ja jengituotteet.</p>
-            </div>
-          </div>
-          <div class="info-grid">
-            <div class="rules-card" id="tags">
-              <h3>⭐ VIP</h3>
-              <ul>
-                <li>Lisää tähän VIP Bronze / Silver / Gold</li>
-                <li>Voit lisätä omat hinnat ja edut</li>
-                <li>Sama tyyli toimii kaikkiin tuotteisiin</li>
-              </ul>
-            </div>
-            <div class="help-card">
-              <h3>🏷️ Tägit</h3>
-              <ul>
-                <li>Esim. custom chat tagit</li>
-                <li>Supporter-merkinnät</li>
-                <li>Yhteisön erikoisroolit</li>
-              </ul>
-            </div>
-            <div class="rules-card" id="unban">
-              <h3>🔓 Unbannit</h3>
-              <ul>
-                <li>Lisää tähän unban-hakemuksen tai maksutuotteen tiedot</li>
-                <li>Kirjoita ehdot selkeästi ennen myyntiä</li>
-              </ul>
-            </div>
-            <div class="help-card" id="gang">
-              <h3>🔫 Jengit & muut</h3>
-              <ul>
-                <li>Lisää tähän jengipaketit</li>
-                <li>Voit tehdä myös yritys- ja faction-tuotteita</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <section class="info-grid">
-          <div class="rules-card" id="rules">
-            <h3>📖 Säännöt</h3>
-            <ul>
-              <li>Ostot ovat lopullisia, ellei toisin ilmoiteta.</li>
-              <li>Tuotteiden toimitus tapahtuu serverin käytäntöjen mukaan.</li>
-              <li>Älä osta väärällä nimellä tai tiedoilla.</li>
-              <li>Noudata Frosty RP:n sääntöjä kaikissa ostotilanteissa.</li>
-            </ul>
-          </div>
-          <div class="help-card" id="help">
-            <h3>ℹ️ Ohjeet</h3>
-            <ul>
-              <li>Vaihda kaikki <strong>SUNNIMI</strong>-kohdat omaan PayPal.Me nimeesi.</li>
-              <li>Vaihda Discord-linkki oikeaksi.</li>
-              <li>Lisää omat VIP- ja muut tuotteet valmiisiin osioihin.</li>
-              <li>GitHub Pages päivittää sivun commitin jälkeen automaattisesti.</li>
-            </ul>
-          </div>
-        </section>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer container">
-    © 2026 Frosty RP — Premium FiveM Shop
-  </footer>
-
-  <script>
-    const drawer = document.getElementById('drawer');
-    const backdrop = document.getElementById('backdrop');
-    const openBtn = document.getElementById('openDrawer');
-    const closeBtn = document.getElementById('closeDrawer');
-
-    function openDrawer(){
-      drawer.classList.add('open');
-      backdrop.classList.add('show');
-    }
-
-    function closeDrawer(){
-      drawer.classList.remove('open');
-      backdrop.classList.remove('show');
-    }
-
-    openBtn.addEventListener('click', openDrawer);
-    closeBtn.addEventListener('click', closeDrawer);
-    backdrop.addEventListener('click', closeDrawer);
-
-    document.querySelectorAll('.drawer-link').forEach(link => {
-      link.addEventListener('click', closeDrawer);
-    });
-  </script>
 </body>
 </html>
